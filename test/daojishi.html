@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js倒计时显示-细数逝去的过往</title>
+<style type="text/css">
+#clock {
+font: bold 24pt sans;
+background-color: #f5f5f5;
+padding: 10px 15px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+.demo {
+position: absolute;
+margin-left: 40%;
+margin-top: 40%;
+}
+</style>
+</head>
+<body>
+<div class="demo">
+
+<h1>下班倒计时显示</h1>
+
+<span id="clock"></span>
+</div>
+<script>
+function displayTime() {
+var elt = document.getElementById("clock");
+if(leftTime < 0) {
+elt.innerHTML = "Over";
+} else {
+var endTime = new Date("2016/11/21 18:00:00");
+var now = new Date();
+var leftTime = endTime.getTime() - now.getTime();
+var ms = parseInt(leftTime % 1000).toString();
+leftTime = parseInt(leftTime / 1000);
+var o = Math.floor(leftTime / 3600);
+var d = Math.floor(o / 24);
+var m = Math.floor(leftTime / 60 % 60);
+var s = leftTime % 60;
+elt.innerHTML = o + "小时:" + m + "分:" + s + "秒:" + ms.charAt(0);
+setTimeout(displayTime, 100);
+}
+}
+displayTime();
+</script>
+</body>
+</html>
